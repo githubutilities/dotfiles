@@ -24,8 +24,22 @@ function symlinkIt() {
 	source ~/.bash_profile;
 }
 
+function uninstallIt() {
+	ls -a | awk '!/^.$/ && !/^..$/        \
+		&& !/^.git$/                      \
+		&& !/^.DS_Store$/                 \
+		&& !/^bootstrap.sh$/              \
+		&& !/^README.md$/                 \
+		&& !/^LICENSE-MIT.txt$/           \
+		' | xargs -I {} sh -c '           \
+			rm -rf ~/{} 2> /dev/null
+		'
+}
+
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
 	copyIt;
+elif [ "$1" == "--uninstall" ]; then
+	uninstallIt;
 elif [ "$1" == "--link" ]; then
 	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
 	echo "";
@@ -41,3 +55,4 @@ else
 fi;
 unset copyIt;
 unset symlinkIt;
+unset uninstallIt;
