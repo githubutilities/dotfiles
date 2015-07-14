@@ -1,5 +1,5 @@
 ALFRED_WORKFLOW_MANAGER=alfred-workflow-manager
-ALFRED_WORKFLOW_MANAGER_GIT_REPOSITORY=git@github.com:githubutilities/$ALFRED_WORKFLOW_MANAGER.git
+ALFRED_WORKFLOW_MANAGER_GIT_REPOSITORY=https://github.com/githubutilities/alfred-workflow-manager.git
 WORKFLOW_DIRECTORY=~/Library/"Application Support"/"Alfred 2"/Alfred.alfredpreferences/workflows/
 
 cd "${WORKFLOW_DIRECTORY}"
