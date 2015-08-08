@@ -2,43 +2,25 @@
 
 cd "$(dirname "${BASH_SOURCE}")";
 
-SUBLIME_SETTING_GIT_REPOSITORY=git@github.com:githubutilities/sublime2_user_settings.git
-SUBLIME_SETTING_DIRECTORY=sublime2-setting
+SUBLIME_SETTING_GIT_REPOSITORY=https://github.com/githubutilities/sublime2_user_settings.git
 TARGET_SUBLIME_SETTING_DIRECTORY=~/Library/"Application Support"/"Sublime Text 2"/Packages/User
 
-function updateSublimeSettingDirectory() {
-	local ret;
-	if [ ! -d $SUBLIME_SETTING_DIRECTORY ]; then
-		git clone $SUBLIME_SETTING_GIT_REPOSITORY $SUBLIME_SETTING_DIRECTORY 2>&1 1> /dev/null;
-		ret=$?;
-	else
-		cd $SUBLIME_SETTING_DIRECTORY;
-		git pull origin master 2>&1 1> /dev/null;
-		ret=$?;
-		cd ..;
-	fi;
-	return $ret;
-}
-
 function doIt() {
-	rm -rf "${TARGET_SUBLIME_SETTING_DIRECTORY}";
-	local SUBLIME_SETTING_DIRECTORY_PATH=$(pwd)/$SUBLIME_SETTING_DIRECTORY;
-	ln -s "${SUBLIME_SETTING_DIRECTORY_PATH}" "${TARGET_SUBLIME_SETTING_DIRECTORY}";
-	echo "";
-	echo "Sublime setting(${SUBLIME_SETTING_DIRECTORY_PATH}) symlinked.";
+	if [ ! -d "${TARGET_SUBLIME_SETTING_DIRECTORY}" ]; then
+		git clone $SUBLIME_SETTING_GIT_REPOSITORY "${TARGET_SUBLIME_SETTING_DIRECTORY}" 2>&1 1> /dev/null;
+	else
+		# if it is not a git repository, clone it
+		if [ ! -d "${TARGET_SUBLIME_SETTING_DIRECTORY}"/.git ]; then
+			rm -rf "${TARGET_SUBLIME_SETTING_DIRECTORY}";
+			git clone $SUBLIME_SETTING_GIT_REPOSITORY "${TARGET_SUBLIME_SETTING_DIRECTORY}" 2>&1 1> /dev/null;
+		else
+			echo "Updating sublime setting..."
+			cd "${TARGET_SUBLIME_SETTING_DIRECTORY}";
+			git pull origin master 2>&1 1> /dev/null;
+			cd -;
+		fi;
+	fi;
 }
-
-echo "Updating sublime setting..."
-updateSublimeSettingDirectory;
-
-if [ $? -ne 0 ]; then
-	echo "Fail to update sublime setting. Check your internet connection."
-	echo "Abort..."
-	exit 1;
-else
-	echo "Sublime setting updated."
-	echo ""
-fi;
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
 	doIt;
@@ -55,8 +37,6 @@ else
 	fi;
 fi;
 
-unset updateSublimeSettingDirectory;
 unset doIt;
 unset SUBLIME_SETTING_GIT_REPOSITORY;
-unset SUBLIME_SETTING_DIRECTORY;
 unset TARGET_SUBLIME_SETTING_DIRECTORY;
