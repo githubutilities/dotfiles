@@ -230,11 +230,19 @@ function v() {
 # `o` with no arguments opens the current directory, otherwise opens the given
 # location
 function o() {
-	if [ $# -eq 0 ]; then
-		open .;
-	else
-		open "$@";
-	fi;
+	if [[ "$OSTYPE" == "linux-gnu" ]]; then
+		if [ $# -eq 0 ]; then
+			xdg-open .;
+		else
+			xdg-open "$@";
+		fi;
+	elif [[ "$OSTYPE" == "darwin"* ]]; then
+		if [ $# -eq 0 ]; then
+			open .;
+		else
+			open "$@";
+		fi;
+	fi
 }
 
 # `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
