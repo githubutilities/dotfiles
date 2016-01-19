@@ -1,3 +1,7 @@
+# iDevice alias
+alias lockscreen="activator send libactivator.lockscreen.toggle"
+alias homebutton="activator send libactivator.system.homebutton"
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
