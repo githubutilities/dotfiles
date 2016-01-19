@@ -1,6 +1,15 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 cd "$(dirname "${BASH_SOURCE}")";
+
+# Install sudo
+apt-get install -y --force-yes sudo
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Install rsync for copying dotfiles
+sudo apt-get install -y --force-yes rsync
 
 git pull origin master;
 
