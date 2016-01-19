@@ -1,5 +1,5 @@
 # Load the ubuntu shell dotfiles
-for file in ~/.ubuntu/.bashrc; do
+for file in ~/.ios/.bashrc; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 
