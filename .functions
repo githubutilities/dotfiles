@@ -1,3 +1,8 @@
+# Search which package command belongs to
+function whichpkg() {
+	readlink -f "$(which $1)" | xargs --no-run-if-empty dpkg -S;
+}
+
 # Simple calculator
 function calc() {
 	local result="";
