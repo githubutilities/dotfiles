@@ -1,0 +1,5 @@
+#!/bin/bash
+echo [$@]
+echo "command=xdg-open \"https://www.google.com/search?q=define $@\""
+echo "icon="
+echo "subtext=Google define for $@"
