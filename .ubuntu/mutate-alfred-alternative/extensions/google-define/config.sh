@@ -2,3 +2,5 @@
 
 EXTENSION_NAME=google-define
 TRIGGER_KEYWORD=df
+ARGUMENT=need
+
