@@ -1,0 +1,8 @@
+#!/bin/bash
+echo [$@]
+echo "command=xdotool search --class \"$@\" windowactivate %@"
+echo "icon="
+echo "subtext=Bring $@ to front"
+
+# Reference
+# * http://askubuntu.com/questions/346169/shortcut-to-bring-all-open-terminals-to-the-front
