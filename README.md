@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-git clone https://github.com/mathiasbynens/dotfiles.git && cd dotfiles && git checkout osx && source bootstrap.sh
+git clone https://github.com/githubutilities/dotfiles.git && cd dotfiles && git checkout osx && source bootstrap.sh
 ```
 
 ## Develop Environment Install Scripts
