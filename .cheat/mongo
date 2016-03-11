@@ -1,0 +1,21 @@
+# Export to json
+mongoexport -d <database> -c <collection> -o <out-file>
+
+# Export to csv
+mongoexport --csv -o <out-file> -d <database> -c <collection> -f <field-1>, <field-2>
+
+# Import from json
+mongoimport -d <database> -c <collection> <in-file>
+
+# Import from csv
+mongoimport -d <database> -c <collection> --type csv --file <in-file>
+
+# Import from csv with headerline
+mongoimport -d <database> -c <collection> --type csv --file <in-file> --headerline
+
+# Dump database
+mongodump -d <database> -o <out-directory>
+
+# Restore database
+mongorestore -d <database> <path-to-in-directory>
+
