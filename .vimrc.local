@@ -1,0 +1,5 @@
+" colorscheme molokai
+" colorscheme peaksea
+
+let g:solarized_termcolors=16
+color solarized
