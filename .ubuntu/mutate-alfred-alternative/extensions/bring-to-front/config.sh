@@ -4,5 +4,5 @@
 sudo apt-get install --yes xdotool
 
 EXTENSION_NAME=bring-to-front
-TRIGGER_KEYWORD=fr
+TRIGGER_KEYWORD=f
 ARGUMENT=need
